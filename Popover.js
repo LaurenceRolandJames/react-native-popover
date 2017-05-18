@@ -142,7 +142,7 @@ var Popover = React.createClass({
         var popoverOrigin = new Point(
             Math.min(displayArea.x + displayArea.width - contentSize.width,
                 Math.max(displayArea.x, fromRect.x + (fromRect.width - contentSize.width) / 2)),
-            fromRect.y - contentSize.height - arrowSize.height);
+            fromRect.y - contentSize.height + 3 - arrowSize.height);
 
         var anchorPoint = new Point(fromRect.x + fromRect.width / 2.0, fromRect.y);
 
@@ -157,7 +157,7 @@ var Popover = React.createClass({
         var popoverOrigin = new Point(
             Math.min(displayArea.x + displayArea.width - contentSize.width,
                 Math.max(displayArea.x, fromRect.x + (fromRect.width - contentSize.width) / 2)),
-            fromRect.y + fromRect.height + arrowSize.height);
+            fromRect.y + fromRect.height - 3 + arrowSize.height);
 
         var anchorPoint = new Point(fromRect.x + fromRect.width / 2.0, fromRect.y + fromRect.height);
 
@@ -173,7 +173,7 @@ var Popover = React.createClass({
     },
 
     computeLeftGeometry({displayArea, fromRect, contentSize, arrowSize}) {
-        var popoverOrigin = new Point(fromRect.x - contentSize.width - arrowSize.width,
+        var popoverOrigin = new Point(fromRect.x - contentSize.width + 3 - arrowSize.width,
             Math.min(displayArea.y + displayArea.height - contentSize.height,
                 Math.max(displayArea.y, fromRect.y + (fromRect.height - contentSize.height) / 2)));
 
@@ -187,7 +187,7 @@ var Popover = React.createClass({
     },
 
     computeRightGeometry({displayArea, fromRect, contentSize, arrowSize}) {
-        var popoverOrigin = new Point(fromRect.x + fromRect.width + arrowSize.width,
+        var popoverOrigin = new Point(fromRect.x + fromRect.width - 3 + arrowSize.width,
             Math.min(displayArea.y + displayArea.height - contentSize.height,
                 Math.max(displayArea.y, fromRect.y + (fromRect.height - contentSize.height) / 2)));
 
@@ -483,7 +483,8 @@ var styles = StyleSheet.create({
         backgroundColor: 'transparent'
     },
     containerVisible: {
-        opacity: 1
+        opacity: 1,
+        backgroundColor: 'rgba(0,0,0,0.5)'
     },
     background: {
         top: 0,
@@ -500,14 +501,15 @@ var styles = StyleSheet.create({
         position: 'absolute'
     },
     popoverContent: {
-        backgroundColor: '#333438',
-        borderBottomLeftRadius: 9,
-        borderBottomRightRadius: 9,
-        borderBottomColor: '#333438'
+        backgroundColor: 'white',
+        paddingLeft: 1,
+        paddingTop: 5,
+        paddingBottom: 5,
+        borderRadius: 3,
     },
     popoverTopRadius: {
-        borderTopLeftRadius: 9,
-        borderTopRightRadius: 9
+        // borderTopLeftRadius: 9,
+        // borderTopRightRadius: 9
     },
     selectContainer: {
         backgroundColor: '#f2f2f2',
@@ -521,10 +523,10 @@ var styles = StyleSheet.create({
     },
     title: {
         alignItems: 'center',
-        backgroundColor: '#28292c',
+        backgroundColor: 'white',
         borderTopLeftRadius: 9,
         borderTopRightRadius: 9,
-        borderTopColor: '#28292c',
+        borderTopColor: 'white',
         padding: 6
     },
     titleText: {
@@ -541,4 +543,4 @@ var styles = StyleSheet.create({
     }
 });
 
-module.exports = Popover; 
+module.exports = Popover;
